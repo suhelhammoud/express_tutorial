@@ -1,13 +1,18 @@
-const http = require('http');
+const express = require('express');
 
-http.createServer(function(req, res){
-    res.writeHead( 200, {
-        // 'Content-Type': 'application/html'
-        'Content-Type': 'text/plain'
+const app = express();
 
-    });
-    res.end('Hello Node !');
-    // res.end('{"key":"value"}');
-}).listen(3000, 'localhost');
+app.get('/', function(req, res){
+    res.send('Hello Express 2!');
+    // res.send({name: "Adam"});
+});
 
-console.log('Server is running at http://localhost:3000/');
+app.get('/users', function(req, res){
+    // res.send('Hello Express!');
+    res.send([{name: "Adam"}, {name: "Salem"}]);
+});
+
+const server = app.listen(3000, function(){
+    console.log('Server running at http://localhost:3000/');
+    
+})
